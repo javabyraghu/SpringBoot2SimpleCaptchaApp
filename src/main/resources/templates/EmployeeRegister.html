@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-primary text-white">
+				<h3>EMPLOYEE REGISTER PAGE</h3>
+			</div>
+			<div class="card-body">
+				<form th:action="@{/employee/save}" method="POST"
+					th:object="${employee}">
+					<input type="hidden" th:field="*{id}">
+					<div class="row">
+						<div class="col-2">
+							<label>NAME</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{name}" class="form-control" />
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-2">
+							<label>SALARY</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{salary}" class="form-control" />
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-2"></div>
+						<div class="col-4">
+							<img th:src="*{'data:image/png;base64,'+ image}" />
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-2">CAPTCHA</div>
+						<div class="col-4">
+							<input type="text" th:field="*{captcha}" class="form-control" />
+							<input type="hidden" th:field="*{hidden}" />
+						</div>
+					</div>
+					<input type="submit" value="Add Employee" class="btn btn-success" />
+						| <a th:href="@{/employee/all}" class="btn btn-info">VIEW ALL</a>
+				</form>
+				<br/>
+				<div th:if="${message!=null}">
+					<span class="alert alert-danger" th:text="${message}"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
